@@ -1,0 +1,18 @@
+curl --location --request POST 'localhost:8080/api/v1/users' \
+--header 'code: 3' \
+--header 'name: Mitar Mitrovic' \
+--header 'descr: ' \
+--header 'version: now()' \
+--header 'username: ccc' \
+--header 'password: ccc' \
+--header 'Content-Type: application/json' \
+--data-raw ' {
+
+    "code": "5",
+    "name": "Petar Petrovic",
+    "descr": "",
+    "version": "2020-02-08T15:19:35.584+0000",
+    "userName": "aaa",
+    "password": "aaa"
+}
+'
