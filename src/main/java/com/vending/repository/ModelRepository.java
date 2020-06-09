@@ -10,6 +10,7 @@ import java.util.Optional;
 public interface ModelRepository extends JpaRepository<Model, Long> {
 
  Optional<Model> findModelByCode(String code);
+ void deleteById(Long id);
    // Model findModelByName(String Name);
 
 //    @Query("SELECT max(m.id) " +

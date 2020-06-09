@@ -30,7 +30,11 @@ public class LocationController {
 
     }
 
-
+    @DeleteMapping("/locations/{id}")
+    @Transactional
+    void deleteLocation(@PathVariable Long id) {
+        locationRepository.deleteById(id);
+    }
 
 
     @PostMapping("/locations")

@@ -5,8 +5,8 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "location", schema = "cb")
-public class Location {
+@Table(name = "assetlocation", schema = "cb")
+public class AssetLocation {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -26,35 +26,35 @@ public class Location {
     @Column(name = "version")
     private Timestamp version;
 
-    @Column(name = "adress", nullable = false)
-    private String adress;
-
     @Column(name = "datefrom", nullable = false)
     private Date dateFrom;
 
     @Column(name = "dateto", nullable = false)
     private Date dateTo;
 
-    @Column(name = "active", nullable = false)
-    private Boolean active;
+    @javax.persistence.ManyToOne ()
+    @JoinColumn(name = "assetid", referencedColumnName = "id", nullable = false)
+    private Asset asset;
 
-//    @javax.persistence.OneToMany(mappedBy = "locationId")
-//    private AssetLocation assetLocation;
+    @javax.persistence.ManyToOne()
+    @JoinColumn(name = "locid", referencedColumnName = "id", nullable = false)
+    private Location location;
 
-    public Location() {
+
+    public AssetLocation() {
 
     }
 
-    public Location(long id, String code, String name, String descr, Timestamp version,String adress, Date dateFrom, Date dateTo, Boolean active) {
+    public AssetLocation(long id, String code, String name, String descr, Timestamp version, Date dateFrom, Date dateTo, Asset asset, Location location) {
         this.code = code;
         this.name = name;
         this.descr = descr;
         this.version = version;
-        this.adress = adress;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
-        this.active = active;
 
+        this.asset = asset;
+        this.location = location;
     }
 
 
@@ -98,9 +98,6 @@ public class Location {
         return version;
     }
 
-
-
-
     public Date getDateFrom() {
         return dateFrom;
     }
@@ -117,19 +114,20 @@ public class Location {
         this.dateTo = dateTo;
     }
 
-    public Boolean getActive() {
-        return active;
+
+    public Asset getAsset() {
+        return asset;
     }
 
-    public void setActive(Boolean active) {
-        this.active = active;
+    public void setAsset(Asset asset) {
+        this.asset = asset;
     }
 
-    public String getAdress() {
-        return adress;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }
