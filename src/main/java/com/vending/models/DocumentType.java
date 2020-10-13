@@ -1,12 +1,12 @@
 package com.vending.models;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Timestamp;
 
+
 @Entity
-@Table(name = "model", schema = "cb")
-public class Model {
+@Table(name = "documentationtype", schema = "cb")
+public class DocumentType {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -26,20 +26,18 @@ public class Model {
     @Column(name = "version")
     private Timestamp version;
 
-    @Column(name = "year", nullable = true)
-    private Date year;
 
 
-    public Model() {
+    public DocumentType() {
 
     }
 
-    public Model(long id, String code, String name, String descr, Timestamp version, Date year) {
+    public DocumentType(long id, String code, String name, String descr, Timestamp version) {
         this.code = code;
         this.name = name;
         this.descr = descr;
         this.version = version;
-        this.year = year;
+
 
     }
 
@@ -89,14 +87,7 @@ public class Model {
     }
 
 
-    public Date getYear() {
-        return year;
-    }
-
-    public void setYear(Date year) {
-        this.year = year;
-    }
-
 
 
 }
+

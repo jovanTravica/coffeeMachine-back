@@ -1,19 +1,17 @@
 package com.vending.models;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "model", schema = "cb")
-public class Model {
-
+@Table(name = "measurement", schema = "cb")
+public class Measurement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     @Id
     private long id;
 
-    @Column(name = "code", unique = true ,nullable = false)
+    @Column(name = "code", unique = true, nullable = false)
     private String code;
 
     @Column(name = "name", nullable = false)
@@ -26,23 +24,17 @@ public class Model {
     @Column(name = "version")
     private Timestamp version;
 
-    @Column(name = "year", nullable = true)
-    private Date year;
 
+    public  Measurement () {}
 
-    public Model() {
-
-    }
-
-    public Model(long id, String code, String name, String descr, Timestamp version, Date year) {
+    public Measurement(long id, String code, String name, String descr, Timestamp version) {
+        this.id = id;
         this.code = code;
         this.name = name;
         this.descr = descr;
         this.version = version;
-        this.year = year;
 
     }
-
 
     public long getId() {
         return id;
@@ -52,7 +44,6 @@ public class Model {
         this.id = id;
     }
 
-
     public String getCode() {
         return code;
     }
@@ -60,7 +51,6 @@ public class Model {
     public void setCode(String code) {
         this.code = code;
     }
-
 
     public String getName() {
         return name;
@@ -70,7 +60,6 @@ public class Model {
         this.name = name;
     }
 
-
     public String getDescr() {
         return descr;
     }
@@ -78,7 +67,6 @@ public class Model {
     public void setDescr(String descr) {
         this.descr = descr;
     }
-
 
     public Timestamp getVersion() {
         return version;
@@ -89,14 +77,5 @@ public class Model {
     }
 
 
-    public Date getYear() {
-        return year;
-    }
-
-    public void setYear(Date year) {
-        this.year = year;
-    }
-
-
-
 }
+

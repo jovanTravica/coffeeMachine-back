@@ -1,12 +1,18 @@
 package com.vending.models;
 
+
+import com.vending.models.DocumentType;
+import com.vending.models.Asset;
+
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+
 @Entity
-@Table(name = "location", schema = "cb")
-public class Location {
+@Table(name = "document", schema = "cb")
+public class Document {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -26,32 +32,32 @@ public class Location {
     @Column(name = "version")
     private Timestamp version;
 
-    @Column(name = "adress", nullable = false)
-    private String adress;
+    @Column(name = "datdoc", nullable = false)
+    private Date dateDoc;
 
-    @Column(name = "datefrom", nullable = false)
-    private Date dateFrom;
 
-    @Column(name = "dateto", nullable = false)
-    private Date dateTo;
+    @javax.persistence.ManyToOne()
+    @JoinColumn(name = "dtid", referencedColumnName = "id", nullable = false)
+    private DocumentType documentType;
 
-    @Column(name = "active", nullable = false)
-    private Boolean active;
+    @javax.persistence.ManyToOne()
+    @JoinColumn(name = "assetid", referencedColumnName = "id", nullable = false)
+    private Asset asset;
 
-    public Location() {
+
+    public Document() {
 
     }
 
-    public Location(long id, String code, String name, String descr, Timestamp version,String adress, Date dateFrom, Date dateTo, Boolean active) {
+    public Document(long id, String code, String name, String descr, Timestamp version, Date dateDoc, Date dateFrom, Date dateTo, DocumentType documentType, Asset asset) {
         this.code = code;
         this.name = name;
         this.descr = descr;
         this.version = version;
-        this.adress = adress;
-        this.dateFrom = dateFrom;
-        this.dateTo = dateTo;
-        this.active = active;
+        this.dateDoc = dateDoc;
+        this.documentType = documentType;
 
+        this.asset = asset;
     }
 
 
@@ -98,35 +104,32 @@ public class Location {
 
 
 
-    public Date getDateFrom() {
-        return dateFrom;
+
+    public Date getDateDoc() {
+        return dateDoc;
     }
 
-    public void setDateFrom(Date dateFrom) {
-        this.dateFrom = dateFrom;
+    public void setDateDoc(Date dateDoc) {
+        this.dateDoc = dateDoc;
     }
 
-    public Date getDateTo() {
-        return dateTo;
+
+    public DocumentType getDocumentType() {
+        return documentType;
     }
 
-    public void setDateTo(Date dateTo) {
-        this.dateTo = dateTo;
+    public void setDocumentType(DocumentType documentType) {
+        this.documentType = documentType;
     }
 
-    public Boolean getActive() {
-        return active;
+
+
+    public Asset getAsset() {
+        return asset;
     }
 
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
-    public String getAdress() {
-        return adress;
-    }
-
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAsset(Asset asset) {
+        this.asset = asset;
     }
 }
+

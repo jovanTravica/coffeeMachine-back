@@ -1,19 +1,19 @@
 package com.vending.models;
 
+
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "model", schema = "cb")
-public class Model {
+@Table(name = "asset", schema = "cb")
+public class Asset {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     @Id
     private long id;
 
-    @Column(name = "code", unique = true ,nullable = false)
+    @Column(name = "code", unique = true, nullable = false)
     private String code;
 
     @Column(name = "name", nullable = false)
@@ -26,23 +26,27 @@ public class Model {
     @Column(name = "version")
     private Timestamp version;
 
-    @Column(name = "year", nullable = true)
-    private Date year;
+    @javax.persistence.ManyToOne ()
+    @JoinColumn(name = "modelid", referencedColumnName = "id", nullable = false)
+    private Model model;
+
+    @javax.persistence.ManyToOne ()
+    @JoinColumn(name = "locid", referencedColumnName = "id", nullable = false)
+    private Location location;
 
 
-    public Model() {
+    public  Asset () {}
 
-    }
-
-    public Model(long id, String code, String name, String descr, Timestamp version, Date year) {
+    public Asset(long id, String code, String name, String descr, Timestamp version, Model model, Location location) {
+        this.id = id;
         this.code = code;
         this.name = name;
         this.descr = descr;
         this.version = version;
-        this.year = year;
 
+        this.model = model;
+        this.location = location;
     }
-
 
     public long getId() {
         return id;
@@ -52,7 +56,6 @@ public class Model {
         this.id = id;
     }
 
-
     public String getCode() {
         return code;
     }
@@ -60,7 +63,6 @@ public class Model {
     public void setCode(String code) {
         this.code = code;
     }
-
 
     public String getName() {
         return name;
@@ -70,7 +72,6 @@ public class Model {
         this.name = name;
     }
 
-
     public String getDescr() {
         return descr;
     }
@@ -78,7 +79,6 @@ public class Model {
     public void setDescr(String descr) {
         this.descr = descr;
     }
-
 
     public Timestamp getVersion() {
         return version;
@@ -89,14 +89,20 @@ public class Model {
     }
 
 
-    public Date getYear() {
-        return year;
+
+    public Model getModel() {
+        return model;
     }
 
-    public void setYear(Date year) {
-        this.year = year;
+    public void setModel(Model model) {
+        this.model = model;
     }
 
+    public Location getLocation() {
+        return location;
+    }
 
-
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 }
