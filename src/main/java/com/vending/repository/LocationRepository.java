@@ -11,6 +11,7 @@ import java.util.Optional;
 public interface LocationRepository extends JpaRepository<Location, Long> {
 
     Optional<Location> findLocationByCode(String code);
+    void deleteById(Long id);
 //    Location findLocationByName(String name);
 //
 //    @Query("SELECT max(l.id) " +

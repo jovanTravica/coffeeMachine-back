@@ -38,6 +38,9 @@ public class Location {
     @Column(name = "active", nullable = false)
     private Boolean active;
 
+//    @javax.persistence.OneToMany(mappedBy = "locationId")
+//    private AssetLocation assetLocation;
+
     public Location() {
 
     }

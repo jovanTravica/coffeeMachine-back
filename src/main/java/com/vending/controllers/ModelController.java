@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin (origins = "*")
+@CrossOrigin (origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/v1")
 public class ModelController {
 
@@ -31,6 +31,12 @@ public class ModelController {
     Optional<Model> one(@PathVariable String code) {
         return modelRepository.findModelByCode(code);
 
+    }
+
+    @DeleteMapping("/models/{id}")
+    @Transactional
+    void deleteModel(@PathVariable Long id) {
+        modelRepository.deleteById(id);
     }
 
 

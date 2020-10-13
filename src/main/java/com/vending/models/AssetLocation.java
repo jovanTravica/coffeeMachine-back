@@ -1,22 +1,19 @@
 package com.vending.models;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "asset", schema = "cb")
-public class Asset {
+@Table(name = "assetlocation", schema = "cb")
+public class AssetLocation {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     @Id
     private long id;
 
-    @Column(name = "code", unique = true, nullable = false)
+    @Column(name = "code", unique = true ,nullable = false)
     private String code;
 
     @Column(name = "name", nullable = false)
@@ -29,39 +26,37 @@ public class Asset {
     @Column(name = "version")
     private Timestamp version;
 
-    @javax.persistence.ManyToOne ()
-    @JoinColumn(name = "modelid", referencedColumnName = "id", nullable = false)
-    private Model model;
+    @Column(name = "datefrom", nullable = false)
+    private Date dateFrom;
 
-<<<<<<< HEAD
+    @Column(name = "dateto", nullable = false)
+    private Date dateTo;
+
     @javax.persistence.ManyToOne ()
+    @JoinColumn(name = "assetid", referencedColumnName = "id", nullable = false)
+    private Asset asset;
+
+    @javax.persistence.ManyToOne()
     @JoinColumn(name = "locid", referencedColumnName = "id", nullable = false)
     private Location location;
 
 
-    public  Asset () {}
+    public AssetLocation() {
 
-    public Asset(long id, String code, String name, String descr, Timestamp version, Model model, Location location) {
-=======
-//    @javax.persistence.OneToMany(mappedBy = "assetId")
-//    private AssetLocation assetLocation;
+    }
 
-public  Asset () {}
-
-    public Asset(long id, String code, String name, String descr, Timestamp version, Model modelID, Model model) {
->>>>>>> origin/master
-        this.id = id;
+    public AssetLocation(long id, String code, String name, String descr, Timestamp version, Date dateFrom, Date dateTo, Asset asset, Location location) {
         this.code = code;
         this.name = name;
         this.descr = descr;
         this.version = version;
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
 
-        this.model = model;
-<<<<<<< HEAD
+        this.asset = asset;
         this.location = location;
-=======
->>>>>>> origin/master
     }
+
 
     public long getId() {
         return id;
@@ -71,6 +66,7 @@ public  Asset () {}
         this.id = id;
     }
 
+
     public String getCode() {
         return code;
     }
@@ -78,6 +74,7 @@ public  Asset () {}
     public void setCode(String code) {
         this.code = code;
     }
+
 
     public String getName() {
         return name;
@@ -87,6 +84,7 @@ public  Asset () {}
         this.name = name;
     }
 
+
     public String getDescr() {
         return descr;
     }
@@ -95,24 +93,35 @@ public  Asset () {}
         this.descr = descr;
     }
 
+
     public Timestamp getVersion() {
         return version;
     }
 
-    public void setVersion(Timestamp version) {
-        this.version = version;
+    public Date getDateFrom() {
+        return dateFrom;
+    }
+
+    public void setDateFrom(Date dateFrom) {
+        this.dateFrom = dateFrom;
+    }
+
+    public Date getDateTo() {
+        return dateTo;
+    }
+
+    public void setDateTo(Date dateTo) {
+        this.dateTo = dateTo;
     }
 
 
-
-    public Model getModel() {
-        return model;
+    public Asset getAsset() {
+        return asset;
     }
 
-    public void setModel(Model model) {
-        this.model = model;
+    public void setAsset(Asset asset) {
+        this.asset = asset;
     }
-<<<<<<< HEAD
 
     public Location getLocation() {
         return location;
@@ -121,6 +130,4 @@ public  Asset () {}
     public void setLocation(Location location) {
         this.location = location;
     }
-=======
->>>>>>> origin/master
 }
