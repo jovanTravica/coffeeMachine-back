@@ -1,9 +1,5 @@
 package com.vending.models;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -33,23 +29,18 @@ public class Asset {
     @JoinColumn(name = "modelid", referencedColumnName = "id", nullable = false)
     private Model model;
 
-<<<<<<< HEAD
+
     @javax.persistence.ManyToOne ()
     @JoinColumn(name = "locid", referencedColumnName = "id", nullable = false)
     private Location location;
 
 
-    public  Asset () {}
 
-    public Asset(long id, String code, String name, String descr, Timestamp version, Model model, Location location) {
-=======
-//    @javax.persistence.OneToMany(mappedBy = "assetId")
-//    private AssetLocation assetLocation;
 
 public  Asset () {}
 
     public Asset(long id, String code, String name, String descr, Timestamp version, Model modelID, Model model) {
->>>>>>> origin/master
+
         this.id = id;
         this.code = code;
         this.name = name;
@@ -57,10 +48,9 @@ public  Asset () {}
         this.version = version;
 
         this.model = model;
-<<<<<<< HEAD
+
         this.location = location;
-=======
->>>>>>> origin/master
+
     }
 
     public long getId() {
@@ -112,7 +102,7 @@ public  Asset () {}
     public void setModel(Model model) {
         this.model = model;
     }
-<<<<<<< HEAD
+
 
     public Location getLocation() {
         return location;
@@ -121,6 +111,5 @@ public  Asset () {}
     public void setLocation(Location location) {
         this.location = location;
     }
-=======
->>>>>>> origin/master
+
 }

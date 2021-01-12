@@ -23,7 +23,7 @@ public class ModelController {
 
 
     @GetMapping("/models")
-    public List<Model> getAllUsers() {
+    public List<Model> getAllModels() {
         return modelRepository.findAll();
 
     }
@@ -40,11 +40,7 @@ public class ModelController {
     }
 
 
-    @DeleteMapping("/models/{id}")
-    @Transactional
-    void deleteDocument(@PathVariable Long id) {
-        modelRepository.deleteById(id);
-    }
+
 
     @PostMapping("/models")
     @Transactional
